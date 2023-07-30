@@ -25,4 +25,15 @@ You just got an empty PicoUSB? How to program it:
  - code.py - interpreter that executes your pesudo code. Free to modifly. (1)
  - boot.py - this code. Free to modify. (1)
 
+**pico_usb.txt API:**
+- delay()   - delays the execution for the number of seconds that is in between brackets, example: delay(0.8)
+- press()   - presses once, all together, one or more buttons. for example, to press enter, use press(enter), to "select all", use press(control + a).
+- write()   - writes down anything that is written between the brackets. example: write(https://www.youtube.com/)
+- hold()    - holds down one or more buttons
+- release() - releases all held keys (all)
+- move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
+- click(btn)- btn is the mouse button, options are left, right, middle
+- scroll(x) - negative number scrolls down, possitive scrolls up
+- volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
+
 **(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code. Please do not do that unless you want to make a special code that bricks it. I dont recommend it. Modify at your own discretion. I am not responible if you brick it.

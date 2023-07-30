@@ -1,6 +1,8 @@
 # PicoUSB
 Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to program - Bad USB
 
+![PicoUSB-3](https://github.com/TomBrlek/PicoUSB/assets/137766608/e64d61c2-e8db-4887-aa5e-6456fb3bd157)
+
 You just got an empty PicoUSB? How to program it:
 
 **Setup:**

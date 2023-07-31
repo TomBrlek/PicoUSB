@@ -20,10 +20,10 @@ You just got an empty PicoUSB? How to program it:
  - If you insert it while holding the "Boot" button, it will open in bootloader mode. This is usually only used the first time the device is set up and never again.
 
 **Important Files:**
- - pico_usb.txt - here is where your executable code is located
- - layout.txt - here is where you select your keyboard layout
+ - pico_usb.txt - here is where your executable pseudo-code is located.
+ - layout.txt - here is where you select your keyboard layout.
  - code.py - interpreter that executes your pesudo code. Free to modifly. (1)
- - boot.py - this code. Free to modify. (1)
+ - boot.py - this code executes before the USB is recognised. Free to modify. (1)
 
 **pico_usb.txt API:**
 - delay()   - delays the execution for the number of seconds that is in between brackets, example: delay(0.8)
@@ -36,4 +36,4 @@ You just got an empty PicoUSB? How to program it:
 - scroll(x) - negative number scrolls down, possitive scrolls up
 - volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
 
-**(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code. Please do not do that unless you want to make a special code that bricks it. I dont recommend it. Modify at your own discretion. I am not responible if you brick it.
+**(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. Please do not do that unless you want to make a special code that bricks it. I dont recommend it. Modify at your own discretion. I am not responible if you brick it.

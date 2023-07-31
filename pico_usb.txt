@@ -1,5 +1,3 @@
-# dont forget to change your keyboard layout in layout.txt
-
 delay(1)
 press(windows)
 delay(1)

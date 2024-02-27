@@ -35,4 +35,4 @@ You just got an empty PicoUSB? How to program it:
 - scroll(x) - negative number scrolls down, possitive scrolls up
 - volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
 
-**(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. Please do not do that unless you want to make a special code that bricks it. I dont recommend it. Modify at your own discretion. I am not responible if you brick it.
+**(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. This happens if you write your own micropython scrip. PicoUSB pseudo-code will never brick the device. Please do not modify the micropython code unless you know what you are doing. Modify at your own discretion. I am not responible if you brick it.

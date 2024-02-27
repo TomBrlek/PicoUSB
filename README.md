@@ -10,7 +10,7 @@ You just got an empty PicoUSB? How to program it:
 2. Insert PicoUSB into your USB drive while holding the "Boot" button. (Opens it in a bootloader mode. The first time you do this. You do not have to hold the "Boot" button)
 3. Copy the CircuitPython .uf2 file to the USB and wait for few seconds or a minute for it to finish setting up. (will close and reopen the explorer, be patient)
 4. Download/Clone the contents of this repository.
-5. Open the USB device in explorer and copy/paste this repo into it.
+5. Open the USB device in explorer and copy/paste this repo into it. (Replace all)
 6. Finished! That is it. Modify pico_usb.txt to change the functionality. See bellow to know what to do next.
 
 **Operation:**

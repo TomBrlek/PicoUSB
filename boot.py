@@ -5,15 +5,15 @@ import storage
 import digitalio
 import microcontroller
 
+bt = digitalio.DigitalInOut(board.GP25)
+bt.direction = digitalio.Direction.INPUT
+bt.pull = digitalio.Pull.UP
+
 storage.remount("/", readonly=False)
 m = storage.getmount("/")
 m.label = "PicoUSB"
 storage.remount("/", readonly=True)
 storage.enable_usb_drive()
-
-bt = digitalio.DigitalInOut(board.GP25)
-bt.direction = digitalio.Direction.INPUT
-bt.pull = digitalio.Pull.UP
 
 time.sleep(0.2) #wait a bit so the button gets pulled up
 

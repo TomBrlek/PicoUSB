@@ -15,7 +15,7 @@ bt = digitalio.DigitalInOut(board.GP25)
 bt.direction = digitalio.Direction.INPUT
 bt.pull = digitalio.Pull.UP
 
-time.sleep(0.1) #wait a bit so the button gets pulled up
+time.sleep(0.2) #wait a bit so the button gets pulled up
 
 if bt.value:
     storage.disable_usb_drive()

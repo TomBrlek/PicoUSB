@@ -21,7 +21,7 @@ bt = digitalio.DigitalInOut(board.GP25)
 bt.direction = digitalio.Direction.INPUT
 bt.pull = digitalio.Pull.UP
 
-led = digitalio.DigitalInOut(board.GP24)
+led = digitalio.DigitalInOut(board.GP12)
 led.direction = digitalio.Direction.OUTPUT
 
 def get_substr(string, start, end):

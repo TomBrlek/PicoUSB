@@ -17,6 +17,10 @@ cc = ConsumerControl(usb_hid.devices)
 kb = Keyboard(usb_hid.devices)
 ms = Mouse(usb_hid.devices)
 
+led = digitalio.DigitalInOut(board.GP12)
+led.direction = digitalio.Direction.OUTPUT
+led.value = True
+
 bt = digitalio.DigitalInOut(board.GP25)
 bt.direction = digitalio.Direction.INPUT
 bt.pull = digitalio.Pull.UP

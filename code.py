@@ -74,6 +74,9 @@ try:
     elif command == "TR":
         from keyboard_layouts.keyboard_layout_win_tr import KeyboardLayout
         layout = KeyboardLayout(kb)
+    elif command == "BE":
+        from keyboard_layouts.keyboard_layout_win_bene.py import KeyboardLayout
+        layout = KeyboardLayout(kb)
     file = io.open("/pico_usb.txt", "r")
     line = file.readline()
     while line != "":

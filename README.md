@@ -37,4 +37,8 @@ You just got an empty PicoUSB? How to program it:
 - scroll(x) - negative number scrolls down, possitive scrolls up
 - volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
 
+**Keyboard Codes:**
+- Github:  [../lib/adafruit_hid/keycode.py](https://github.com/TomBrlek/PicoUSB/blob/main/lib/adafruit_hid/keycode.py) (online on Github)
+- PicoUSB: ../lib/adafruit_hid/keycode.py (localy on your PicoUSB after doing the setup)
+
 **(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. This happens if you write your own micropython scrip. PicoUSB pseudo-code will never brick the device. Please do not modify the micropython code unless you know what you are doing. Modify at your own discretion. I am not responible if you brick it.

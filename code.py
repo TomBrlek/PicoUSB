@@ -25,6 +25,61 @@ led = digitalio.DigitalInOut(board.GP12)
 led.direction = digitalio.Direction.OUTPUT
 led.value = True
 
+looping = False
+loop_pos = 0
+
+def execute_command(function, command):
+    if function == "DELAY":
+        if command.isdigit():
+            time.sleep(float(command))
+    elif function == "PRESS":
+        command = command.split(" + ")
+        for c in range(0, len(command), 1):
+            command[c] = command[c].upper()
+        if len(command) <= 6:
+            keys = [0] * len(command)
+            for idx in range(0, len(command), 1):
+                keys[idx] = getattr(Keycode, command[idx])
+            kb.send(*keys)
+    elif function == "WRITE":
+        layout.write(command)
+    elif function == "HOLD":
+        command = command.split(" + ")
+        for c in range(0, len(command), 1):
+            command[c] = command[c].upper()
+        if len(command) <= 6:
+            keys = [0] * len(command)
+            for idx in range(0, len(command), 1):
+                keys[idx] = getattr(Keycode, command[idx])
+            kb.press(*keys)
+    elif function == "RELEASE":
+        kb.release_all()
+    elif function == "MOVE":
+        command = command.split(", ")
+        pos = [0] * 2
+        for i in range(0, len(command), 1):
+            pos[i] = int(command[i])
+        ms.move(x=pos[0], y=-1*pos[1], wheel=0)
+    elif function == "SCROLL":
+        ms.move(x=0, y=0, wheel=int(command))
+    elif function == "CLICK":
+        if command == "left":
+            ms.click(Mouse.LEFT_BUTTON)
+        elif command == "middle":
+            ms.click(Mouse.MIDDLE_BUTTON)
+        elif command == "right":
+            ms.click(Mouse.RIGHT_BUTTON)
+    elif function == "VOLUME":
+        if command.isdigit():
+            for vc in range(0, abs(int(command)), 1):
+                if int(command) > 0:
+                    cc.send(ConsumerControlCode.VOLUME_INCREMENT)
+                elif int(command) < 0:
+                    cc.send(ConsumerControlCode.VOLUME_DECREMENT)
+        elif command == "mute":
+            cc.send(ConsumerControlCode.MUTE)
+    
+
 def get_substr(string, start, end):
     command = ""
     for idx in range(start+1, end):
@@ -82,59 +137,25 @@ try:
     while line != "":
         function = line.split("(",1)[0].upper()
         command = get_substr(line, line.find("("), line.rfind(")"))
-        if function == "DELAY":
-            if command.isdigit():
-                time.sleep(float(command))
-        elif function == "PRESS":
-            command = command.split(" + ")
-            for c in range(0, len(command), 1):
-                command[c] = command[c].upper()
-            if len(command) <= 6:
-                keys = [0] * len(command)
-                for idx in range(0, len(command), 1):
-                    keys[idx] = getattr(Keycode, command[idx])
-                kb.send(*keys)
-        elif function == "WRITE":
-            layout.write(command)
-        elif function == "HOLD":
-            command = command.split(" + ")
-            for c in range(0, len(command), 1):
-                command[c] = command[c].upper()
-            if len(command) <= 6:
-                keys = [0] * len(command)
-                for idx in range(0, len(command), 1):
-                    keys[idx] = getattr(Keycode, command[idx])
-                kb.press(*keys)
-        elif function == "RELEASE":
-            kb.release_all()
-        elif function == "MOVE":
-            command = command.split(", ")
-            pos = [0] * 2
-            for i in range(0, len(command), 1):
-                pos[i] = int(command[i])
-            ms.move(x=pos[0], y=-1*pos[1], wheel=0)
-        elif function == "SCROLL":
-            ms.move(x=0, y=0, wheel=int(command))
-        elif function == "CLICK":
-            if command == "left":
-                ms.click(Mouse.LEFT_BUTTON)
-            elif command == "middle":
-                ms.click(Mouse.MIDDLE_BUTTON)
-            elif command == "right":
-                ms.click(Mouse.RIGHT_BUTTON)
-        elif function == "VOLUME":
-            if command.isdigit():
-                for vc in range(0, abs(int(command)), 1):
-                    if int(command) > 0:
-                        cc.send(ConsumerControlCode.VOLUME_INCREMENT)
-                    elif int(command) < 0:
-                        cc.send(ConsumerControlCode.VOLUME_DECREMENT)
-            elif command == "mute":
-                cc.send(ConsumerControlCode.MUTE)
+        if looping == False:
+            loop_pos += len(line)
+        if function == "LOOP":
+            looping = True
+        execute_command(function, command)
         line = file.readline()
-    file.close()
+    file.close()  
+    file = io.open("/pico_usb.txt", "r")
+    while looping == True:
+        file.seek(loop_pos)
+        line = file.readline()
+        while line != "":
+            function = line.split("(",1)[0].upper()
+            command = get_substr(line, line.find("("), line.rfind(")"))
+            execute_command(function, command)
+            line = file.readline()
+
+    file.close()  
+
 except OSError as e:
     print(e)
 kb.release_all()
-
-

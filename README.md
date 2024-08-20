@@ -3,6 +3,10 @@ Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to progr
 
 ![PicoUSB-3](https://github.com/TomBrlek/PicoUSB/assets/137766608/e64d61c2-e8db-4887-aa5e-6456fb3bd157)
 
+[Get your PicoUSB here!](https://www.elecrow.com/picousb-raspberry-pi-pico-rp2040-powered-bad-usb-rubber-ducky.html)
+
+[Check out PicoUSB Website & Subscribe to our newsetter!](https://picousb.com/)
+
 You just got an empty PicoUSB? How to program it:
 
 **Setup:** 
@@ -36,6 +40,6 @@ You just got an empty PicoUSB? How to program it:
 - click(btn)- btn is the mouse button, options are left, right, middle
 - scroll(x) - negative number scrolls down, possitive scrolls up
 - volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
-- loop() - forever loops everything after the loop comand. Use loop only once.
+- loop() - forever loops everything after the loop command. Use loop only once.
 
 **(1)** There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. This happens if you write your own micropython scrip. PicoUSB pseudo-code will never brick the device. Please do not modify the micropython code unless you know what you are doing. Modify at your own discretion. I am not responible if you brick it.

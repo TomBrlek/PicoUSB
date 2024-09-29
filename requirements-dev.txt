@@ -1,0 +1,2 @@
+micropython-rp2-pico-stubs
+adafruit-circuitpython-typing

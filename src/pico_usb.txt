@@ -1,0 +1,37 @@
+# PicoUSB Payloads go in this file
+# DO NOT FORGET to change your country keyboard layout in layout.txt!
+######################################################################################
+###  Commands:                                                                     ###
+###  delay() - delays the execution for the number of seconds that is in           ###
+###            between brackets, example: delay(0.8)                               ###
+###  press() - presses once, all together, one or more buttons. for example,       ###
+###            to press enter, use press(enter), to "select all",                  ###
+###            use press(control + a).                                             ###
+###  write() - writes down anything that is written between the brackets.          ###
+###            example: write(https://www.youtube.com/)                            ###
+###  hold() - holds down one or more buttons                                       ###
+###  release() - releases all held keys (all)                                      ###
+###  move(x, y) - moves the mouse on the main display to the given location,       ###
+###               from the current location as a reference. negative x = left,     ###
+###               positive x = right, negative y = down, positive y = up.          ###
+###  click(btn)- btn is the mouse button, options are left, right, middle          ###
+###  scroll(x) - negative number scrolls down, possitive scrolls up                ###
+###  volume(x) - negative number is volume down by x, positive volume up by x.     ###
+###              min volume = 0. max = 100. volume(mute) mutes the speakers.       ###
+###  loop() - forever loops everything after the loop command. Use loop only once. ###
+######################################################################################
+
+delay(1)
+press(windows + d) # minimizes all windows
+delay(1)
+press(windows + r) # Run window
+delay(2)
+write(notepad)
+press(enter)
+delay(2)
+write(Hello from PicoUSB!)
+delay(1)
+loop()
+write(!)
+move(5, 5)
+delay(0.5)

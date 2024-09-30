@@ -2,6 +2,12 @@
 
 Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to program Bad USB
 
+- [PicoUSB](#picousb)
+  - [Setup](#setup)
+  - [Operation](#operation)
+  - [Important Files](#important-files)
+  - [Development](#development)
+
 ![PicoUSB-3](https://github.com/TomBrlek/PicoUSB/assets/137766608/e64d61c2-e8db-4887-aa5e-6456fb3bd157)
 
 [Get your PicoUSB here!](https://www.elecrow.com/picousb-raspberry-pi-pico-rp2040-powered-bad-usb-rubber-ducky.html)

@@ -1,0 +1,21 @@
+layout(CRO)
+
+# to change layout, edit the country layout in between the brackets. Example: layout(US)
+# layouts generated using Circuitpython_Keyboard_Layouts
+# check it out: https://github.com/Neradoc/Circuitpython_Keyboard_Layouts.git
+
+#current supported layouts:
+# US - United States
+# CRO - Croatia/Slovenia/Bosnia
+# UK - United Kingdom
+# FR - French
+# CZ - Czechia
+# BR - Brazil
+# DE - Germany
+# ES - Spain
+# HU - Hungary
+# IT - Italy
+# PO - Poland
+# SW - Sweden
+# TR - Turkey
+# BE - Belgium

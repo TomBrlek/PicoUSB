@@ -1,0 +1,15 @@
+# dont forget to change your keyboard layout in layout.txt
+
+delay(3) #on slower computers it is better to have bigger delays. I usually use delay(0.8) on my faster PC.
+press(windows + d) # minimizes all windows
+delay(2) 
+press(windows + e) # opens windows explorer on windows
+delay(2)
+press(control + l) # edit path/link. 
+delay(2)
+write(https://youtu.be/dQw4w9WgXcQ)
+delay(2)
+press(enter) # Will open the default browser.
+delay(2)
+press(windows + d) # minimizes all windows
+volume(100)

@@ -31,7 +31,8 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 ## Important Files
 
 > [!CAUTION]
-> There are ways you can brick your PicoUSB never to be used again if you disable the USB communication in code, without the ability to enable it again. This happens if you write your own micropython scripts (please be careful!). Please do not modify the micropython code unless you know what you are doing. Modify at your own discretion. I am not responible if you brick it. PicoUSB pseudo-code will never brick the device!
+> Changing any python can result in **permanently bricking your device**. Be very careful when modifying `boot.py` as disabling the USB drive without a failsafe could render the device useless!
+> Be careful when writing your own micropython scripts! The developers are not responsible if you brick your own device this way!
 
 - pico_usb.txt - here is where your executable pseudo-code is located.
 - layout.txt - here is where you select your keyboard layout.

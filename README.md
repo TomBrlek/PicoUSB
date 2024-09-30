@@ -41,16 +41,16 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 
 **pico_usb.txt API:**
 
-- delay()   - delays the execution for the number of seconds that is in between brackets, example: delay(0.8)
-- press()   - presses once, all together, one or more buttons. for example, to press enter, use press(enter), to "select all", use press(control + a).
-- write()   - writes down anything that is written between the brackets. example: write(https://www.youtube.com/)
-- hold()    - holds down one or more buttons
-- release() - releases all held keys (all)
+- delay()   - waits for the specified amount of time before resuming execution. Example: delay(0.8)
+- press()   - presses one or more buttons once. For example to press enter, use `press(enter)`. To "select all", use `press(control + a)`.
+- write()   - sequentially presses many buttons in a row. example: `write(Hello world!)`
+- hold()    - presses and holds down one or more buttons until `release()` is called
+- release() - releases **all** held keys
 - move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
-- click(btn)- btn is the mouse button, options are left, right, middle
-- scroll(x) - negative number scrolls down, possitive scrolls up
-- volume(x) - negative number is volume down by x, possitive volume up by x. min volume = 0. max = 100. volume(mute) mutes the speakers.
-- loop() - forever loops everything after the loop command. Use loop only once.
+- click(btn)- clicks the mouse. `btn` is the mouse button, options are left, right, middle
+- scroll(x) - scrolls the mouse. Negative number scrolls down, possitive scroll up
+- volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
+- loop() - loops everything before this command
 
 ## Development
 

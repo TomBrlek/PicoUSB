@@ -118,7 +118,6 @@ def execute_command(function, command):
                     cc.send(ConsumerControlCode.VOLUME_DECREMENT)
         elif command == "mute":
             cc.send(ConsumerControlCode.MUTE)
-    
 
 def get_substr(string, start, end):
     command = ""

@@ -17,6 +17,9 @@ cc = ConsumerControl(usb_hid.devices)
 kb = Keyboard(usb_hid.devices)
 ms = Mouse(usb_hid.devices)
 
+from adafruit_hid.keyboard_layout_us import KeyboardLayout
+layout = KeyboardLayout(kb)
+
 bt = digitalio.DigitalInOut(board.GP25)
 bt.direction = digitalio.Direction.INPUT
 bt.pull = digitalio.Pull.UP
@@ -27,6 +30,41 @@ led.value = True
 
 looping = False
 loop_pos = 0
+
+def change_layout(layout_id: str):
+    global layout
+    del KeyboardLayout
+    if layout_id == "US":
+        from adafruit_hid.keyboard_layout_us import KeyboardLayout
+    elif layout_id in ("SI", "HR", "BA"):
+        from keyboard_layouts.keyboard_layout_win_cr import KeyboardLayout
+    elif layout_id == "GB":
+        from keyboard_layouts.keyboard_layout_win_uk import KeyboardLayout
+    elif layout_id == "FR":
+        from keyboard_layouts.keyboard_layout_win_fr import KeyboardLayout
+    elif layout_id == "CZ":
+        from keyboard_layouts.keyboard_layout_win_cz import KeyboardLayout
+    elif layout_id == "BR":
+        from keyboard_layouts.keyboard_layout_win_br import KeyboardLayout
+    elif layout_id == "DE":
+        from keyboard_layouts.keyboard_layout_win_de import KeyboardLayout
+    elif layout_id == "ES":
+        from keyboard_layouts.keyboard_layout_win_es import KeyboardLayout
+    elif layout_id == "HU":
+        from keyboard_layouts.keyboard_layout_win_hu import KeyboardLayout
+    elif layout_id == "IT":
+        from keyboard_layouts.keyboard_layout_win_it import KeyboardLayout
+    elif layout_id == "PO":
+        from keyboard_layouts.keyboard_layout_win_po import KeyboardLayout
+    elif layout_id == "SE":
+        from keyboard_layouts.keyboard_layout_win_sw import KeyboardLayout
+    elif layout_id == "TR":
+        from keyboard_layouts.keyboard_layout_win_tr import KeyboardLayout
+    elif layout_id == "BE":
+        from keyboard_layouts.keyboard_layout_win_bene import KeyboardLayout
+    else:
+        raise Exception("Unknown keyboard layout")
+    layout = KeyboardLayout(kb)
 
 def execute_command(function, command):
     if function == "DELAY":
@@ -87,51 +125,6 @@ def get_substr(string, start, end):
     return command
 
 try:
-    file = io.open("/layout.txt", "r")
-    line = file.readline()
-    command = get_substr(line, line.find("("), line.rfind(")"))
-    if command == "US":
-        from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
-        layout = KeyboardLayoutUS(kb)
-    elif command in ("SI", "HR", "BA"):
-        from keyboard_layouts.keyboard_layout_win_cr import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "GB":
-        from keyboard_layouts.keyboard_layout_win_uk import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "FR":
-        from keyboard_layouts.keyboard_layout_win_fr import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "CZ":
-        from keyboard_layouts.keyboard_layout_win_cz import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "BR":
-        from keyboard_layouts.keyboard_layout_win_br import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "DE":
-        from keyboard_layouts.keyboard_layout_win_de import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "ES":
-        from keyboard_layouts.keyboard_layout_win_es import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "HU":
-        from keyboard_layouts.keyboard_layout_win_hu import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "IT":
-        from keyboard_layouts.keyboard_layout_win_it import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "PO":
-        from keyboard_layouts.keyboard_layout_win_po import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "SE":
-        from keyboard_layouts.keyboard_layout_win_sw import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "TR":
-        from keyboard_layouts.keyboard_layout_win_tr import KeyboardLayout
-        layout = KeyboardLayout(kb)
-    elif command == "BE":
-        from keyboard_layouts.keyboard_layout_win_bene import KeyboardLayout
-        layout = KeyboardLayout(kb)
     file = io.open("/pico_usb.txt", "r")
     line = file.readline()
     while line != "":

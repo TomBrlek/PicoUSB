@@ -1,5 +1,4 @@
 # PicoUSB Payloads go in this file
-# DO NOT FORGET to change your country keyboard layout in layout.txt!
 ######################################################################################
 ###  Commands:                                                                     ###
 ###  delay() - delays the execution for the number of seconds that is in           ###
@@ -20,6 +19,26 @@
 ###              min volume = 0. max = 100. volume(mute) mutes the speakers.       ###
 ###  loop() - forever loops everything after the loop command. Use loop only once. ###
 ######################################################################################
+
+# Current supported layouts:
+# SI - Slovenia
+# US - United States (default)
+# GB - United Kingdom
+# FR - French
+# CZ - Czechia
+# BR - Brazil
+# DE - Germany
+# ES - Spain
+# HU - Hungary
+# IT - Italy
+# PO - Poland
+# SE - Sweden
+# TR - Turkey
+# BE - Belgium
+# CR - Croatia
+# BA - Bosnia
+
+layout(US)
 
 delay(1)
 press(windows + d) # minimizes all windows

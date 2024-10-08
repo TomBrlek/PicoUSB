@@ -70,6 +70,8 @@ def execute_command(function, command):
     if function == "DELAY":
         if command.isdigit():
             time.sleep(float(command))
+    elif function == "LAYOUT":
+        change_layout(command)
     elif function == "PRESS":
         command = command.split(" + ")
         for c in range(0, len(command), 1):

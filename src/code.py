@@ -93,10 +93,10 @@ try:
     if command == "US":
         from adafruit_hid.keyboard_layout_us import KeyboardLayoutUS
         layout = KeyboardLayoutUS(kb)
-    elif command == "CRO":
+    elif command in ("SI", "HR", "BA"):
         from keyboard_layouts.keyboard_layout_win_cr import KeyboardLayout
         layout = KeyboardLayout(kb)
-    elif command == "UK":
+    elif command == "GB":
         from keyboard_layouts.keyboard_layout_win_uk import KeyboardLayout
         layout = KeyboardLayout(kb)
     elif command == "FR":
@@ -123,7 +123,7 @@ try:
     elif command == "PO":
         from keyboard_layouts.keyboard_layout_win_po import KeyboardLayout
         layout = KeyboardLayout(kb)
-    elif command == "SW":
+    elif command == "SE":
         from keyboard_layouts.keyboard_layout_win_sw import KeyboardLayout
         layout = KeyboardLayout(kb)
     elif command == "TR":

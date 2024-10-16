@@ -130,12 +130,13 @@ try:
     file_end = file.tell()
     file.seek(0)
     while line := file.readline():
-        line = line.split(" ", 1)
+        line = line.rstrip('\n').split(" ", 1)
         if len(line) == 2:
             function, command = line
         else:
             function = line[0]
             command = None
+        function = function.strip().upper()
         if function.upper() == "LOOP":
             loop_pos = file.tell()
             if command:

@@ -74,10 +74,7 @@ def execute_command(function: str, command: str):
         command: list[str] = [x.strip().upper() for x in command.split("+")]
         if len(command) > 6:
             raise PicoKeyboardException("Too many keys pressed at once!")
-        keys = [0] * len(command)
-        for idx in range(0, len(command), 1):
-            keys[idx] = getattr(Keycode, command[idx])
-        kb.send(*keys)
+        kb.send(Keycode.__dict__[k] for k in command)
     elif function == "WRITE":
         layout.write(command)
     elif function == "HOLD":

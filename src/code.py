@@ -90,6 +90,7 @@ def execute_command(function: str, command: str):
     elif function == "SCROLL":
         ms.move(x=0, y=0, wheel=int(command))
     elif function == "CLICK":
+        command = command.lower()  # We love consistency!!
         if command == "left":
             ms.click(Mouse.LEFT_BUTTON)
         elif command == "middle":

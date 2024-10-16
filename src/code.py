@@ -66,6 +66,8 @@ def change_layout(layout_id: str):
     layout = KeyboardLayout(kb)
 
 def execute_command(function: str, command: str):
+    if function[0] == '#':
+        return
     if function in ("DELAY", "SLEEP"):
         time.sleep(float(command))
     elif function == "LAYOUT":

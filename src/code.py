@@ -79,6 +79,8 @@ def execute_command(function: str, command: str):
         kb.send(Keycode.__dict__[k] for k in command)
     elif function == "WRITE":
         layout.write(command.replace("\\n", "\n"))
+    elif function == "WRITEFILE ":
+        layout.write(open(command, "r").read())
     elif function == "HOLD":
         command = [x.strip().upper() for x in command.split("+")]
         if len(command) > 6:

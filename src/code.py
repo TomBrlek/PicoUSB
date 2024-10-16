@@ -100,14 +100,16 @@ def execute_command(function: str, command: str):
         elif command == "right":
             ms.click(Mouse.RIGHT_BUTTON)
     elif function == "VOLUME":
-        if command.isdigit():
-            for vc in range(0, abs(int(command)), 1):
-                if int(command) > 0:
-                    cc.send(ConsumerControlCode.VOLUME_INCREMENT)
-                elif int(command) < 0:
-                    cc.send(ConsumerControlCode.VOLUME_DECREMENT)
-        elif command == "mute":
+        if command.lower() == "mute":
             cc.send(ConsumerControlCode.MUTE)
+        else:
+            amount = int(command)
+            to_send = ConsumerControlCode.VOLUME_INCREMENT
+            if amount < 0:
+                amount = -amount
+                to_send = ConsumerControlCode.VOLUME_DECREMENT
+            for _ in range(amount):
+                cc.send(to_send)
     else:
         raise PicoCommandException("Unknown command")
 

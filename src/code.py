@@ -30,9 +30,6 @@ led = digitalio.DigitalInOut(board.GP12)
 led.direction = digitalio.Direction.OUTPUT
 led.value = True
 
-looping = False
-loop_pos = 0
-
 def change_layout(layout_id: str):
     global layout
     del KeyboardLayout
@@ -121,37 +118,39 @@ def execute_command(function: str, command: str):
     else:
         raise PicoCommandException("Unknown command")
 
-def get_substr(string, start, end):
-    command = ""
-    for idx in range(start+1, end):
-            command += string[idx]
-    return command
 
 try:
-    file: io.FileIO = io.open("/pico_usb.txt", "r")
-    line = file.readline()
-    while line != "":
-        function = line.split("(",1)[0].upper()
-        command = get_substr(line, line.find("("), line.rfind(")"))
-        if looping == False:
-            loop_pos += len(line)
+    loop_pos = 0
+    loop_times = -1
+    # It is a good idea to seek and constantly read instead
+    # of storing the whole file in RAM, as the file could
+    # potentially be bigger than our tiny RAM
+    file: io.TextIOWrapper = io.open("/pico_usb.txt", "r")
+    file.seek(0, 2)  # Move to the end of the file
+    file_end = file.tell()
+    file.seek(0)
+    while line := file.readline():
+        function = line.split(" ", 1)
+        if len(function) == 2:
+            function, command = function
+        else:
+            function = function[0]
+            command = None
         if function == "LOOP":
-            looping = True
+            loop_pos = file.tell()
+            if command:
+                loop_times = int(command.strip())
         execute_command(function, command)
-        line = file.readline()
-    file.close()  
-    file = io.open("/pico_usb.txt", "r")
-    while looping == True:
-        file.seek(loop_pos)
-        line = file.readline()
-        while line != "":
-            function = line.split("(",1)[0].upper()
-            command = get_substr(line, line.find("("), line.rfind(")"))
-            execute_command(function, command)
-            line = file.readline()
-
-    file.close()
-
-except OSError as e:
-    print(e)
-kb.release_all()
+        if loop_pos and file.tell() == file_end:
+            if not loop_times:
+                break
+            file.seek(loop_pos)
+            # Explicitly check if we set loop_times so we
+            # don't end up decrementing it and creating
+            # a huge number (could result in a crash)
+            if loop_times != -1:
+                loop_times -= 1
+finally:
+    kb.release_all()
+    if file:
+        file.close()

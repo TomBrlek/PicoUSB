@@ -78,14 +78,10 @@ def execute_command(function: str, command: str):
     elif function == "WRITE":
         layout.write(command)
     elif function == "HOLD":
-        command = command.split(" + ")
-        for c in range(0, len(command), 1):
-            command[c] = command[c].upper()
-        if len(command) <= 6:
-            keys = [0] * len(command)
-            for idx in range(0, len(command), 1):
-                keys[idx] = getattr(Keycode, command[idx])
-            kb.press(*keys)
+        command = [x.strip().upper() for x in command.split("+")]
+        if len(command) > 6:
+            raise PicoKeyboardException("Too many keys held at once!")
+        kb.press(Keycode.__dict__[k] for k in command)
     elif function == "RELEASE":
         kb.release_all()
     elif function == "MOVE":

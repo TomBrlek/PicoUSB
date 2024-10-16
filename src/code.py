@@ -85,11 +85,8 @@ def execute_command(function: str, command: str):
     elif function == "RELEASE":
         kb.release_all()
     elif function == "MOVE":
-        command = command.split(", ")
-        pos = [0] * 2
-        for i in range(0, len(command), 1):
-            pos[i] = int(command[i])
-        ms.move(x=pos[0], y=-1*pos[1], wheel=0)
+        x, y = [int(a) for a in command.split(',')]
+        ms.move(x=x, y=-1*y, wheel=0)
     elif function == "SCROLL":
         ms.move(x=0, y=0, wheel=int(command))
     elif function == "CLICK":

@@ -130,16 +130,16 @@ try:
     file_end = file.tell()
     file.seek(0)
     while line := file.readline():
-        function = line.split(" ", 1)
-        if len(function) == 2:
-            function, command = function
+        line = line.split(" ", 1)
+        if len(line) == 2:
+            function, command = line
         else:
-            function = function[0]
+            function = line[0]
             command = None
-        if function == "LOOP":
+        if function.upper() == "LOOP":
             loop_pos = file.tell()
             if command:
-                loop_times = int(command.strip())
+                loop_times = int(command)
         execute_command(function, command)
         if loop_pos and file.tell() == file_end:
             if not loop_times:

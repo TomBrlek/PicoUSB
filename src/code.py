@@ -13,6 +13,8 @@ from adafruit_hid.keyboard import Keyboard
 from adafruit_hid.keycode import Keycode
 from adafruit_hid.mouse import Mouse
 
+from exceptions import PicoCommandException, PicoLayoutException, PicoKeyboardException
+
 cc = ConsumerControl(usb_hid.devices)
 kb = Keyboard(usb_hid.devices)
 ms = Mouse(usb_hid.devices)
@@ -63,13 +65,12 @@ def change_layout(layout_id: str):
     elif layout_id == "BE":
         from keyboard_layouts.keyboard_layout_win_bene import KeyboardLayout
     else:
-        raise Exception("Unknown keyboard layout")
+        raise PicoLayoutException("Unknown keyboard layout")
     layout = KeyboardLayout(kb)
 
-def execute_command(function, command):
-    if function == "DELAY":
-        if command.isdigit():
-            time.sleep(float(command))
+def execute_command(function: str, command: str):
+    if function in ("DELAY", "SLEEP"):
+        time.sleep(float(command))
     elif function == "LAYOUT":
         change_layout(command)
     elif function == "PRESS":
@@ -117,6 +118,8 @@ def execute_command(function, command):
                     cc.send(ConsumerControlCode.VOLUME_DECREMENT)
         elif command == "mute":
             cc.send(ConsumerControlCode.MUTE)
+    else:
+        raise PicoCommandException("Unknown command")
 
 def get_substr(string, start, end):
     command = ""
@@ -125,7 +128,7 @@ def get_substr(string, start, end):
     return command
 
 try:
-    file = io.open("/pico_usb.txt", "r")
+    file: io.FileIO = io.open("/pico_usb.txt", "r")
     line = file.readline()
     while line != "":
         function = line.split("(",1)[0].upper()

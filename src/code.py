@@ -78,7 +78,7 @@ def execute_command(function: str, command: str):
             raise PicoKeyboardException("Too many keys pressed at once!")
         kb.send(Keycode.__dict__[k] for k in command)
     elif function == "WRITE":
-        layout.write(command)
+        layout.write(command.replace("\\n", "\n"))
     elif function == "HOLD":
         command = [x.strip().upper() for x in command.split("+")]
         if len(command) > 6:
@@ -125,7 +125,7 @@ try:
     file_end = file.tell()
     file.seek(0)
     while line := file.readline():
-        line = line.rstrip('\n').split(" ", 1)
+        line = line.rstrip('\r\n').split(" ", 1)
         if len(line) == 2:
             function, command = line
         else:

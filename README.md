@@ -48,7 +48,7 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 **pico_usb.txt API:**
 
 - delay     - waits for the specified amount of time before resuming execution. Example: delay(0.8)
-- press     - presses one or more buttons once. For example to press enter, use `press enter`. To "select all", use `press control + a`.
+- press     - presses one or more buttons once. For example to press enter, use `press enter`. To "select all", use `press control + a`. Press also causes the Pico to release all keys after being executed.
 - write     - sequentially presses many buttons in a row. example: `write Hello world!`
 - writefile - reads a file and uses the contents as keypresses. Make sure the file isn't too large (>100kB). example: `writefile commands.txt`
 - hold      - presses and holds down one or more buttons until `release()` is called

@@ -1,6 +1,4 @@
 import io
-import os
-import re
 import time
 import board
 import storage

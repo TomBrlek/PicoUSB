@@ -32,6 +32,7 @@ led.value = True
 
 def change_layout(layout_id: str):
     global layout
+    global KeyboardLayout
     del KeyboardLayout
     if layout_id == "US":
         from adafruit_hid.keyboard_layout_us import KeyboardLayout
@@ -76,16 +77,18 @@ def execute_command(function: str, command: str):
         command: list[str] = [x.strip().upper() for x in command.split("+")]
         if len(command) > 6:
             raise PicoKeyboardException("Too many keys pressed at once!")
-        kb.send(Keycode.__dict__[k] for k in command)
-    elif function == "WRITE":
+        kb.send(*(Keycode.__dict__[k] for k in command))
+    elif function in ("WRITE", "WRITELN"):
         layout.write(command.replace("\\n", "\n"))
-    elif function == "WRITEFILE ":
-        layout.write(open(command, "r").read())
+        if function == "WRITELN":
+            kb.press(layout._char_to_keycode('\n'))
+    elif function == "WRITEFILE":
+        layout.write(open(command, "r").read().replace("\r", ""))
     elif function == "HOLD":
         command = [x.strip().upper() for x in command.split("+")]
         if len(command) > 6:
             raise PicoKeyboardException("Too many keys held at once!")
-        kb.press(Keycode.__dict__[k] for k in command)
+        kb.press(*(Keycode.__dict__[k] for k in command))
     elif function == "RELEASE":
         kb.release_all()
     elif function == "MOVE":
@@ -127,6 +130,8 @@ try:
     file_end = file.tell()
     file.seek(0)
     while line := file.readline():
+        if not line.strip():
+            continue
         line = line.rstrip('\r\n').split(" ", 1)
         if len(line) == 2:
             function, command = line
@@ -138,6 +143,7 @@ try:
             loop_pos = file.tell()
             if command:
                 loop_times = int(command)
+            continue
         execute_command(function, command)
         if loop_pos and file.tell() == file_end:
             if not loop_times:

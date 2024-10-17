@@ -25,7 +25,7 @@ mode.pull = digitalio.Pull.UP
 
 storage.remount("/", readonly=False)
 m = storage.getmount("/")
-m.label = "KISTON"
+m.label = "PicoUSB"
 
 time.sleep(0.05)  # Wait a bit so the button gets pulled up
 

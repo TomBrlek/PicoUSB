@@ -81,7 +81,7 @@ def execute_command(function: str, command: str):
     elif function in ("WRITE", "WRITELN"):
         layout.write(command.replace("\\n", "\n"))
         if function == "WRITELN":
-            kb.press(layout._char_to_keycode('\n'))
+            kb.send(layout._char_to_keycode('\n'))
     elif function == "WRITEFILE":
         layout.write(open(command, "r").read().replace("\r", ""))
     elif function == "HOLD":

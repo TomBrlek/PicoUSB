@@ -30,6 +30,7 @@ led = digitalio.DigitalInOut(board.GP12)
 led.direction = digitalio.Direction.OUTPUT
 led.value = True
 
+
 def change_layout(layout_id: str):
     global layout
     global KeyboardLayout
@@ -65,6 +66,7 @@ def change_layout(layout_id: str):
     else:
         raise PicoLayoutException("Unknown keyboard layout")
     layout = KeyboardLayout(kb)
+
 
 def execute_command(function: str, command: str):
     if function[0] == '#':

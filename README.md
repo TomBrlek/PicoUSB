@@ -51,9 +51,9 @@ It will:
 - code.py - interpreter that executes your pesudo code. Free to modify. (1)
 - boot.py - this code executes before the USB is recognised. Free to modify. (1)
 
-<a id="editing-pico-usb">
+<a id="editing-pico-usb"> </a>
 ### Editing *`pico_usb.txt`* to execute commands:
-</a>
+
 
 #### **General Commands**
 

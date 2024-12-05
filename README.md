@@ -23,8 +23,13 @@ You just got an empty PicoUSB? Here's how to program it:
 3. Copy `CircuitPython.uf2` file to the USB and wait for few seconds or a minute for it to finish setting up. (will close and reopen the explorer, be patient)
 4. Download/Clone the contents of this repository.
 5. Open the USB device in explorer and copy/paste everything from `./src/` into it. (Replace all)
+**Note that** After copying the files the stick might automatically "reinsert" and play the example script in `pico_usb.txt` &rarr;
+It will:
+* Minimize all open windows
+* Open an editor instance
+* Type *Hello from PicoUSB!!*
 
-That is it! Modify `pico_usb.txt` to change the functionality. See below to know what to do next.
+6. **Usage:** To modify the behaviour you will need to modify `pico_usb.txt` to change the functionality. See below to know what to do next.
 
 ([Video Tutorial](https://youtu.be/jKH6WgFiaB0))
 

@@ -14,6 +14,8 @@ Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to progr
 
 [Check out PicoUSB Website & Subscribe to our newsetter!](https://picousb.com/)
 
+[3D Printable Enclosure](https://www.thingiverse.com/thing:7022646)
+
 You just got an empty PicoUSB? Here's how to program it:
 
 ## Setup

@@ -1,4 +1,4 @@
-# dont forget to change your keyboard layout in layout.txt
+# Don't forget to change your keyboard layout in layout.txt
 
 delay(3) #on slower computers it is better to have bigger delays. I usually use delay(0.8) on my faster PC.
 press(windows + d) # minimizes all windows

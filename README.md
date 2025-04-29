@@ -44,21 +44,24 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 
 - pico_usb.txt - here is where your executable pseudo-code is located.
 - layout.txt - here is where you select your keyboard layout.
-- code.py - interpreter that executes your pesudo code. Free to modify. (1)
-- boot.py - this code executes before the USB is recognised. Free to modify. (1)
+- code.py - interpreter that executes your pesudo code. Free to modify.
+- boot.py - this code executes before the USB is recognised. Free to modify.
 
 **pico_usb.txt API:**
 
-- delay()   - waits for the specified amount of time before resuming execution. Example: delay(0.8)
-- press()   - presses one or more buttons once. For example to press enter, use `press(enter)`. To "select all", use `press(control + a)`.
-- write()   - sequentially presses many buttons in a row. example: `write(Hello world!)`
-- hold()    - presses and holds down one or more buttons until `release()` is called
-- release() - releases **all** held keys
-- move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
-- click(btn)- clicks the mouse. `btn` is the mouse button, options are left, right, middle
-- scroll(x) - scrolls the mouse. Negative number scrolls down, possitive scroll up
-- volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
-- loop() - loops everything before this command
+- `#`         - must be the first character in the line. That line will be ignored.
+- `delay`     - waits for the specified amount of time before resuming execution. Example: `delay 0.8`
+- `press`     - presses one or more buttons once. For example to press enter, use `press enter`. To "select all", use `press control + a`. Press also causes the Pico to release all keys after being executed.
+- `write`     - sequentially presses many buttons in a row. example: `write Hello world!`
+- `writefile` - reads a file and uses the contents as keypresses. Make sure the file isn't too large (>100kB). example: `writefile commands.txt`
+- `hold`      - presses and holds down one or more buttons until `release` is called
+- `release`   - releases **all** held keys
+- `move x, y` - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
+- `click btn` - clicks the mouse. `btn` is the mouse button, options are left, right, middle
+- `scroll`    - scrolls the mouse. Negative number scrolls down, possitive scroll up
+- `volume x`  - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume mute` mutes the speakers.
+- `loop`      - loops everything after this command up until the end of the file
+- `loop x`    - same as loop but stops after x times
 
 ## Development
 

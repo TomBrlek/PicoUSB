@@ -10,5 +10,8 @@
     "python.analysis.typeshedPaths": [
         ".venv/Lib/site-packages"
     ],
-    "python.analysis.stubPath": ".venv/Lib/site-packages"
+    "python.analysis.stubPath": ".venv/Lib/site-packages",
+    "cSpell.words": [
+        "Pico"
+    ]
 }

@@ -15,7 +15,7 @@
 ###               from the current location as a reference. negative x = left,     ###
 ###               positive x = right, negative y = down, positive y = up.          ###
 ###  click(btn)- btn is the mouse button, options are left, right, middle          ###
-###  scroll(x) - negative number scrolls down, possitive scrolls up                ###
+###  scroll(x) - negative number scrolls down, positive scrolls up                 ###
 ###  volume(x) - negative number is volume down by x, positive volume up by x.     ###
 ###              min volume = 0. max = 100. volume(mute) mutes the speakers.       ###
 ###  loop() - forever loops everything after the loop command. Use loop only once. ###

@@ -12,7 +12,7 @@ Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to progr
 
 [Get your PicoUSB here!](https://www.elecrow.com/picousb-raspberry-pi-pico-rp2040-powered-bad-usb-rubber-ducky.html)
 
-[Check out PicoUSB Website & Subscribe to our newsetter!](https://picousb.com/)
+[Check out PicoUSB Website & Subscribe to our newsletter!](https://picousb.com/)
 
 [3D Printable Enclosure](https://www.thingiverse.com/thing:7022646)
 
@@ -20,7 +20,7 @@ You just got an empty PicoUSB? Here's how to program it:
 
 ## Setup
 
-1. Download the latest [CircuitPython for Rasperry Pi Pico](https://circuitpython.org/board/raspberry_pi_pico/).
+1. Download the latest [CircuitPython for Raspberry Pi Pico](https://circuitpython.org/board/raspberry_pi_pico/).
 2. Insert PicoUSB into your USB drive while holding the "Boot" button. (Opens it in a bootloader mode. The first time you do this you don't have to hold the "Boot" button)
 3. Copy `CircuitPython.uf2` file to the USB and wait for few seconds or a minute for it to finish setting up. (will close and reopen the explorer, be patient)
 4. Download/Clone the contents of this repository.
@@ -44,7 +44,7 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 
 - pico_usb.txt - here is where your executable pseudo-code is located.
 - layout.txt - here is where you select your keyboard layout.
-- code.py - interpreter that executes your pesudo code. Free to modify. (1)
+- code.py - interpreter that executes your pseudo code. Free to modify. (1)
 - boot.py - this code executes before the USB is recognised. Free to modify. (1)
 
 **pico_usb.txt API:**
@@ -54,10 +54,10 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 - write()   - sequentially presses many buttons in a row. example: `write(Hello world!)`
 - hold()    - presses and holds down one or more buttons until `release()` is called
 - release() - releases **all** held keys
-- move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
+- move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, positive x = right, negative y = down, positive y = up.
 - click(btn)- clicks the mouse. `btn` is the mouse button, options are left, right, middle
-- scroll(x) - scrolls the mouse. Negative number scrolls down, possitive scroll up
-- volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
+- scroll(x) - scrolls the mouse. Negative number scrolls down, positive scroll up
+- volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, positive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
 - loop() - loops everything before this command
 
 ## Development

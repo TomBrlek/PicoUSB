@@ -6,6 +6,7 @@ import board
 import storage
 import usb_hid
 import digitalio
+import random
 
 from adafruit_hid.consumer_control_code import ConsumerControlCode
 from adafruit_hid.consumer_control import ConsumerControl
@@ -60,6 +61,21 @@ def execute_command(function, command):
         for i in range(0, len(command), 1):
             pos[i] = int(command[i])
         ms.move(x=pos[0], y=-1*pos[1], wheel=0)
+    elif function == "RANDOM_MOVE":
+        # Split the command into individual range values
+        command = command.split(", ")
+        # Make sure we have exactly four values (MIN_X, MAX_X, MIN_Y, MAX_Y)
+        if len(command) == 4:
+            min_x, max_x, min_y, max_y = map(int, command)  # Convert the values to integers
+
+            # Generate random x and y within the given ranges
+            random_x = random.randint(min_x, max_x)
+            random_y = random.randint(min_y, max_y)
+
+            # Move the mouse to the random coordinates
+            ms.move(x=random_x, y=-random_y, wheel=0)
+        else:
+            pass #If Pseudo-Script is not well defined, nothing will happen
     elif function == "SCROLL":
         ms.move(x=0, y=0, wheel=int(command))
     elif function == "CLICK":

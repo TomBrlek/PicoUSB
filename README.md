@@ -6,6 +6,7 @@ Repository for PicoUSB - RP2040 based, affordable, easy to use and easy to progr
   - [Setup](#setup)
   - [Operation](#operation)
   - [Important Files](#important-files)
+  - [Editing `pico_usb.txt` to execute commands](#editing-pico-usb)
   - [Development](#development)
 
 ![PicoUSB-3](https://github.com/TomBrlek/PicoUSB/assets/137766608/e64d61c2-e8db-4887-aa5e-6456fb3bd157)
@@ -25,8 +26,13 @@ You just got an empty PicoUSB? Here's how to program it:
 3. Copy `CircuitPython.uf2` file to the USB and wait for few seconds or a minute for it to finish setting up. (will close and reopen the explorer, be patient)
 4. Download/Clone the contents of this repository.
 5. Open the USB device in explorer and copy/paste everything from `./src/` into it. (Replace all)
+**Note that** After copying the files the stick might automatically "reinsert" and play the example script in `pico_usb.txt` &rarr;
+It will:
+* Minimize all open windows
+* Open an editor instance
+* Type *Hello from PicoUSB!!*
 
-That is it! Modify `pico_usb.txt` to change the functionality. See below to know what to do next.
+6. **Usage:** To modify the behaviour you will need to modify `pico_usb.txt` to change the functionality. See below to know what to do next.
 
 ([Video Tutorial](https://youtu.be/jKH6WgFiaB0))
 
@@ -47,18 +53,61 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 - code.py - interpreter that executes your pesudo code. Free to modify. (1)
 - boot.py - this code executes before the USB is recognised. Free to modify. (1)
 
-**pico_usb.txt API:**
+<a id="editing-pico-usb"> </a>
+### Editing *`pico_usb.txt`* to execute commands:
 
-- delay()   - waits for the specified amount of time before resuming execution. Example: delay(0.8)
-- press()   - presses one or more buttons once. For example to press enter, use `press(enter)`. To "select all", use `press(control + a)`.
-- write()   - sequentially presses many buttons in a row. example: `write(Hello world!)`
-- hold()    - presses and holds down one or more buttons until `release()` is called
-- release() - releases **all** held keys
-- move(x, y) - moves the mouse on the main display to the given location, from the current location as a reference. negative x = left, possitive x = right, negative y = down, possitive y = up.
-- click(btn)- clicks the mouse. `btn` is the mouse button, options are left, right, middle
-- scroll(x) - scrolls the mouse. Negative number scrolls down, possitive scroll up
-- volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
-- loop() - loops everything before this command
+
+#### **General Commands**
+
+- **delay(seconds)**  
+  Waits for the specified amount of time before resuming execution.  
+  Example: `delay(0.8)`
+
+- **loop()**  
+  Loops the execution of all commands after the `loop()` command indefinitely.  
+  **Note**: Use the `loop()` command only once.
+
+#### **Keyboard Commands**
+
+- **press(key1, key2, ...)**  
+  Presses one or more buttons once. For example, to press Enter, use `press(enter)`.  
+  To "select all", use `press(control + a)`.
+
+- **write(text)**  
+  Sequentially presses many buttons in a row.  
+  Example: `write(Hello world!)`
+
+- **hold(key1, key2, ...)**  
+  Presses and holds down one or more buttons until `release()` is called.
+
+- **release()**  
+  Releases **all** held keys.
+
+#### **Mouse Commands**
+
+- **move(x_min, x_max, y_min, y_max)**  
+  Moves the mouse to a random location within the given `x` and `y` range, relative to the current position.  
+  - `x_min` and `x_max` define the horizontal range (negative x = left, positive x = right).  
+  - `y_min` and `y_max` define the vertical range (negative y = down, positive y = up).  
+  Example: `move(100, 500, 200, 800)` will move the mouse to a random position where:
+    - `x` is between 100 and 500
+    - `y` is between 200 and 800
+
+- **click(btn)**  
+  Clicks the specified mouse button.  
+  `btn` can be one of: `left`, `middle`, `right`.
+
+- **scroll(amount)**  
+  Scrolls the mouse wheel.  
+  - A negative number scrolls down, a positive number scrolls up.
+
+#### **Volume Control Commands**
+
+- **volume(amount)**  
+  Modifies the system volume.  
+  - A negative number decreases the volume by `amount`, a positive number increases it by `amount`.  
+  - `volume(mute)` mutes the speakers.  
+  - Volume range: 0 (min) to 100 (max).
 
 ## Development
 

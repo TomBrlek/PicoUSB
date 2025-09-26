@@ -59,6 +59,7 @@ That is it! Modify `pico_usb.txt` to change the functionality. See below to know
 - scroll(x) - scrolls the mouse. Negative number scrolls down, possitive scroll up
 - volume(x) - Modifies the system volume. Negative numbers move the volume slider down by x, possitive move it up by x. min volume = 0. max = 100. `volume(mute)` mutes the speakers.
 - loop() - loops everything before this command
+- payload() - allows you to launch a bat file present on the “picousb” in the “payload” folder, for example `payload(test.bat)` (only on window).
 
 ## Development
 

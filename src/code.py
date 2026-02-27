@@ -69,6 +69,20 @@ def execute_command(function, command):
             ms.click(Mouse.MIDDLE_BUTTON)
         elif command == "right":
             ms.click(Mouse.RIGHT_BUTTON)
+    elif function == "MPRESS":
+        if command == "left":
+            ms.press(Mouse.LEFT_BUTTON)
+        elif command == "middle":
+            ms.press(Mouse.MIDDLE_BUTTON)
+        elif command == "right":
+            ms.press(Mouse.RIGHT_BUTTON)
+    elif function == "MRELEASE":
+        if command == "left":
+            ms.release(Mouse.LEFT_BUTTON)
+        elif command == "middle":
+            ms.release(Mouse.MIDDLE_BUTTON)
+        elif command == "right":
+            ms.release(Mouse.RIGHT_BUTTON)
     elif function == "VOLUME":
         if command.isdigit():
             for vc in range(0, abs(int(command)), 1):
